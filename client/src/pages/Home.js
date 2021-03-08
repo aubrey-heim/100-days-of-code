@@ -9,6 +9,7 @@ import {
 
 //import routes
 import API from "../utils/API";
+import RecapCard from "../components/RecapCard";
 //initialize Home page
 function Home() {
   //set state hooks
@@ -33,7 +34,7 @@ function Home() {
       <Box>
         {/* The Material Design responsive layout grid adapts to screen size and orientation, ensuring consistency across layouts. */}
         <Grid container>
-
+          {recaps.map(recap => <RecapCard key={recap._id} {...recap} />)}
         </Grid>
       </Box>
     </div>

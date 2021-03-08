@@ -6,6 +6,7 @@ const recapSchema = new Schema({
   description: { type: String, required: true },
   duration: String,
   date: { type: Date, default: Date.now },
+  repo: String
 });
 
 const Recap = mongoose.model("Recap", recapSchema);

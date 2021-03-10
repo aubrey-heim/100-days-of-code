@@ -6,10 +6,9 @@ import {
   Grid,
 } from "@material-ui/core";
 //import custom components
-
+import RecapCard from "../components/RecapCard";
 //import routes
 import API from "../utils/API";
-import RecapCard from "../components/RecapCard";
 //initialize Home page
 function Home() {
   //set state hooks

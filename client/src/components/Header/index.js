@@ -1,9 +1,31 @@
 //import react, useState, and useEffect methods
 import React, { useState, useEffect } from "react";
-//import Link from react-router-dom
-import { Link } from "react-router-dom";
+//import routes
+import API from "../../utils/API";
 //initialize Header component
 function Header() {
+  //set state hooks
+  const [hours, setHours] = useState();
+  const [minutes, setMinutes] =useState();
+  //gets the recaps from the database on page load
+  useEffect(() => {
+    API.getRecaps()
+      .then(res => {
+        let duration=0;
+        let tempHours;
+        let tempMinutes;
+        res.data.forEach(recap => {
+          console.log(recap)
+          duration=duration+recap.duration
+          console.log(duration)
+          tempHours = Math.floor(duration / 60)
+          tempMinutes = duration - tempHours*60
+          setHours(tempHours)
+          setMinutes(tempMinutes)
+        })
+      })
+      .catch(err => console.log(err));
+  }, []);
   //this returns the site header
   return (
     <nav
@@ -16,10 +38,8 @@ function Header() {
         padding: "5px"
       }}
     >
-      <h1>Aubrey Heim</h1>
-      <Link to="/home">
-        <h1>100 Days of code Challenge</h1>
-      </Link>
+      <h1><a href="/home">Aubrey Heim 100 Days of Code</a></h1>
+      <h2>{`Time Spent Coding ${hours} hours ${minutes} minutes`}</h2>
     </nav>
   );
 }

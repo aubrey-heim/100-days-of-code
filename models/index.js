@@ -1,3 +1,3 @@
 module.exports = {
-  Recap: require("./recap"),
+  Recap: require("./recap")
 };

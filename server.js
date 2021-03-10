@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const routes = require("./routes");
 const PORT = process.env.PORT || 3001;
 const app = express();
+require("dotenv").config();
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
@@ -17,15 +18,12 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // Connect to the Mongo DB
-mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/100Days",
-  {
-    useNewUrlParser: true, 
-    useUnifiedTopology: true, 
-    useCreateIndex: true,
-    useFindAndModify: false
-  }
-);
+mongoose.connect('mongodb+srv://aubrey-heim:'+process.env.ATLASPASS+'@cluster0.88vhs.mongodb.net/100Days?retryWrites=true&w=majority', {
+  useNewUrlParser: true, 
+  useUnifiedTopology: true, 
+  useCreateIndex: true,
+  useFindAndModify: false
+});
 
 const path = require("path");
 

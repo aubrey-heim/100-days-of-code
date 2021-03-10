@@ -18,12 +18,15 @@ if (process.env.NODE_ENV === "production") {
 app.use(routes);
 
 // Connect to the Mongo DB
-mongoose.connect('mongodb+srv://aubrey-heim:'+process.env.ATLASPASS+'@cluster0.88vhs.mongodb.net/100Days?retryWrites=true&w=majority', {
-  useNewUrlParser: true, 
-  useUnifiedTopology: true, 
-  useCreateIndex: true,
-  useFindAndModify: false
-});
+mongoose.connect(
+  process.env.MONGODB_URI || "mongodb://localhost/100Days",
+  {
+    useNewUrlParser: true, 
+    useUnifiedTopology: true, 
+    useCreateIndex: true,
+    useFindAndModify: false
+  }
+);
 
 const path = require("path");
 

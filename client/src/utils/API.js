@@ -20,4 +20,7 @@ export default {
   updateRecap: function (id, recapData) {
     return axios.put("/api/recaps/" + id, recapData);
   },
+  getAdminPass: function () {
+    return axios.get("/api/admin-pass");
+  }
 };

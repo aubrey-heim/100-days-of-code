@@ -19,7 +19,7 @@ View the Depolyed site here: https://aubrey-100-days-of-code.herokuapp.com/
 
 ## Installation
 <ol>
-<li>Clone the repository: "git@github.com:aubrey-heim/100-days-of-code.git"</li>
+<li>Fork the repository</li>
 <li>Install the dependencies using “npm i” in the terminal</li>
 <li>Create a .env file with a ADMIN_PASS variable, and set your password</li>
 <li>Start the application using "npm start"</li>

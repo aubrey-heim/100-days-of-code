@@ -23,7 +23,7 @@ View the Depolyed site here: https://aubrey-100-days-of-code.herokuapp.com/
 <li>Install the dependencies using “npm i” in the terminal</li>
 <li>Create a .env file with a ADMIN_PASS variable, and set your password</li>
 <li>Start the application using "npm start"</li>
-<li>To track a new day, go to "/admin" and enter your password to access the tracking form" </li>
+<li>To track a new day, go to "/admin" and enter your password to access the tracking form</li>
 </ol>
 
 ## License

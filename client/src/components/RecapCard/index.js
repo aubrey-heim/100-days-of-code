@@ -26,6 +26,17 @@ const classes = makeStyles({
 export default function RecapCard(props) {
   //destructures props
   const {dayNumber, description, duration, date, repo} = props
+
+  let hours = Math.floor(duration / 60)
+  let minutes = duration - hours*60
+  let pluralHours=""
+  let pluralMinutes=""
+  if (hours>1){
+    pluralHours="s"
+  }
+  if (minutes>1){
+    pluralMinutes="s"
+  }
   //returns the recapCard for each day of the challenge
   return (
     <Card className={classes.root} variant="outlined">
@@ -37,7 +48,7 @@ export default function RecapCard(props) {
           Day {dayNumber}
         </Typography>
         <Typography className={classes.pos} color="textSecondary">
-          {duration}
+          {hours + " hour" + pluralHours + " " + minutes + " minute" + pluralMinutes}
         </Typography>
         <Typography variant="body2" component="p">
           {description}

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 //import Material UI components
 import { 
   Box, 
+  duration, 
   Grid,
 } from "@material-ui/core";
 //import custom components
@@ -20,7 +21,7 @@ function Home() {
     dayNumber: null,
     description: "",
     duration: null,
-    date: Date.now,
+    date: Date.now(),
     repo: ""
   });
   //loads the Admin password
@@ -34,20 +35,32 @@ function Home() {
     });
   }, []);
   //when admin pass form is submitted, checks password and authorizes user
-    const onPassSubmit = () => {
-        event.preventDefault();
-        if (authFormData === adminPass){
-            setAuthorized(true);
-            console.log("Authorized")
-        } else {
-            alert("Incorrect password")
-        }
-    }
-    const handleInputChange = (e) => {
-        const { name, value } = e.target;
-        setFormData({ ...formData, [name]: value });
-    };
-    const handleAuthChange = event => setAuthFormData(event.target.value);
+  const onPassSubmit = (event) => {
+      event.preventDefault();
+      if (authFormData === adminPass){
+          setAuthorized(true);
+      } else {
+          alert("Incorrect password")
+      }
+  }
+  //when the tracking form is submitted, send data up to database
+  const onFormSubmit = (event) => {
+    event.preventDefault();
+    API.saveRecap({
+      ...formData,
+      duration: parseInt(formData.duration),
+      dayNumber: parseInt(formData.dayNumber)
+    })
+    .then(res => console.log("Entry Saved"))
+    .catch(err => console.log(err));
+  }
+  //listens for changes to tracking form and updates state
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setFormData({ ...formData, [name]: value });
+  };
+  //listens for changes to password form and updates state
+  const handleAuthChange = event => setAuthFormData(event.target.value);
   //this renders a Homepage that welcomes the user
   return (
     <div>
@@ -55,7 +68,11 @@ function Home() {
       <Box>
         {/* The Material Design responsive layout grid adapts to screen size and orientation, ensuring consistency across layouts. */}
         <Grid container>
+          {authorized ?
+            <AdminForm onChange={handleInputChange} onSubmit={onFormSubmit}/>
+          :
             <PassCheck onChange={handleAuthChange} onSubmit={onPassSubmit}/>
+          }
         </Grid>
       </Box>
     </div>

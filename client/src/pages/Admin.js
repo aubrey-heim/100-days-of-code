@@ -51,7 +51,7 @@ function Home() {
       duration: parseInt(formData.duration),
       dayNumber: parseInt(formData.dayNumber)
     })
-    .then(res => console.log("Entry Saved"))
+    .then(window.location.href="/")
     .catch(err => console.log(err));
   }
   //listens for changes to tracking form and updates state
